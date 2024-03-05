@@ -89,4 +89,4 @@ This project is completely free and open source, this project is made possible b
 
 ## License
 
-suyu is licensed under the free and open-source MIT license.
+suyu is licensed under the free and open-source GPL v3 license.
