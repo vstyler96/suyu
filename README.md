@@ -44,6 +44,10 @@ It is written in C++ with portability in mind, and we actively maintain builds f
   <a href="#license">License</a>
 </p>
 
+## Status
+
+We are trying to get the builds working. We are in need of developers. Join our discord to contribute.
+
 ## Compatibility
 
 W.I.P.
