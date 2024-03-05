@@ -1,7 +1,7 @@
-# SPDX-FileCopyrightText: 2022 yuzu Emulator Project
+# SPDX-FileCopyrightText: 2022 suyu Emulator Project
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-name: 'yuzu-android-build'
+name: 'suyu-android-build'
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 jobs:
   android:
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'yuzu-emu/yuzu-android' }}
+    if: ${{ github.repository == 'suyu-emu/suyu-android' }}
     steps:
       - uses: actions/checkout@v3
         with:

@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 yuzu Emulator Project
+# SPDX-FileCopyrightText: 2023 suyu Emulator Project
 # SPDX-License-Identifier: GPL-2.0-or-later
 # GitHub Action to automate the identification of common misspellings in text files.
 # https://github.com/codespell-project/actions-codespell
