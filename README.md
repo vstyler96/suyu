@@ -1,6 +1,6 @@
 <!--
-SPDX-FileCopyrightText: 2018 suyu Emulator Project
-SPDX-License-Identifier: GPL-2.0-or-later
+SPDX-FileCopyrightText: 2024 suyu emulator project
+SPDX-License-Identifier: MIT
 -->
 
 <h4>This project DOES NOT suppot piracy, you are required to source your own games and keys, we make no money off this project (mainly so that Nintendon't sue us lol)</h4>
