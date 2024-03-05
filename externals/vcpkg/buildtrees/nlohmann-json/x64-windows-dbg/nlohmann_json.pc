@@ -1,0 +1,4 @@
+Name: nlohmann_json
+Description: JSON for Modern C++
+Version: 3.10.5
+Cflags: -ID:/a/1/s/externals/vcpkg/packages/nlohmann-json_x64-windows/debug/include
