@@ -73,7 +73,7 @@ If you want to contribute to the user interface translation project, please chec
 ## Downloads
 
 * __Windows__: [Legacy Artifacts](https://github.com/pineappleea/pineapple-src/releases)
-* __Linux__: W.I.P.
+* __Linux__: [Legacy Artifacts](https://github.com/pineappleea/pineapple-src/releases)
 
 ## Building
 
