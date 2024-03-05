@@ -10,7 +10,7 @@ We are in great need of developers, join our discord server at <a href="https://
 
 This repo is created based on yuzu EA 4176. Please contribute
 
-<h1 align="center">
+<h1 align='center'>
   <br>
   <a href=""><img src="https://cdn.discordapp.com/attachments/1214441121099419718/1214452770334056488/Suyu-Logo_V2.png?ex=65f92a47&is=65e6b547&hm=a1f174d70a5c106fec6a998c603e1158d8f3011a6c9ff91415b7c02afe9c0262&" alt="suyu" width="200"></a>
   <br>
