@@ -12,7 +12,7 @@ This repo is created based on yuzu EA 4176. Please contribute
 
 <h1 align="center">
   <br>
-  <a href="https://suyu-emu.org/"><img src="https://raw.githubusercontent.com/suyu-emu/suyu-assets/master/icons/icon.png" alt="suzu" width="200"></a>
+  <a href=""><img src="https://cdn.discordapp.com/attachments/1214441121099419718/1214452770334056488/Suyu-Logo_V2.png?ex=65f92a47&is=65e6b547&hm=a1f174d70a5c106fec6a998c603e1158d8f3011a6c9ff91415b7c02afe9c0262&" alt="suyu" width="200"></a>
   <br>
   <b>suyu</b>
   <br>
