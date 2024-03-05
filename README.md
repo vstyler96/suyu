@@ -38,7 +38,7 @@ It is written in C++ with portability in mind, and we actively maintain builds f
   <a href="#compatibility">Compatibility</a> |
   <a href="#development">Development</a> |
   <a href="#building">Building</a> |
-  <a href="#download">Download</a> |
+  <a href="#downloads">Downloads</a> |
   <a href="#support">Support</a> |
   <a href="#license">License</a>
 </p>
