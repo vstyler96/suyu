@@ -1,7 +1,7 @@
-# SPDX-FileCopyrightText: 2024 suyu Emulator Project
+# SPDX-FileCopyrightText: 2024 yuzu Emulator Project
 # SPDX-License-Identifier: GPL-2.0-or-later
 
-name: suyu-android-publish
+name: yuzu-android-publish
 
 on:
   schedule:
@@ -16,7 +16,7 @@ on:
 jobs:
   android:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.android != 'false' && github.repository == 'suyu-emu/suyu' }}
+    if: ${{ github.event.inputs.android != 'false' && github.repository == 'yuzu-emu/yuzu' }}
     steps:
       # this checkout is required to make sure the GitHub Actions scripts are available
       - uses: actions/checkout@v3
@@ -40,7 +40,7 @@ jobs:
         name: Checkout
         if: ${{ steps.check-changes.outputs.result == 'true' }}
         with:
-          path: 'suyu-merge'
+          path: 'yuzu-merge'
           fetch-depth: 0
           submodules: true
           token: ${{ secrets.ALT_GITHUB_TOKEN }}
@@ -53,5 +53,5 @@ jobs:
           script: |
             const execa = require("execa");
             const mergebot = require('./.github/workflows/android-merge.js').mergebot;
-            process.chdir('${{ github.workspace }}/suyu-merge');
+            process.chdir('${{ github.workspace }}/yuzu-merge');
             mergebot(github, context, execa);
