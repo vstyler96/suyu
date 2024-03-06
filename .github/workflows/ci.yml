@@ -1,7 +1,7 @@
-# SPDX-FileCopyrightText: 2021 suyu Emulator Project
+# SPDX-FileCopyrightText: 2021 yuzu Emulator Project
 # SPDX-License-Identifier: GPL-2.0-or-later
 
-name: suyu-ci
+name: yuzu-ci
 
 on:
   push:
@@ -13,8 +13,8 @@ on:
 jobs:
   transifex:
     runs-on: ubuntu-latest
-    container: suyuemu/build-environments:linux-transifex
-    if: ${{ github.repository == 'suyu-emu/suyu' && !github.head_ref }}
+    container: yuzuemu/build-environments:linux-transifex
+    if: ${{ github.repository == 'yuzu-emu/yuzu' && !github.head_ref }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -27,7 +27,7 @@ jobs:
 
   reuse:
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'suyu-emu/suyu' }}
+    if: ${{ github.repository == 'yuzu-emu/yuzu' }}
     steps:
     - uses: actions/checkout@v3
     - uses: fsfe/reuse-action@v1

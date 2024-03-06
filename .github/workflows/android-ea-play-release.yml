@@ -1,7 +1,7 @@
-# SPDX-FileCopyrightText: 2024 suyu Emulator Project
+# SPDX-FileCopyrightText: 2024 yuzu Emulator Project
 # SPDX-License-Identifier: GPL-2.0-or-later
 
-name: suyu-android-ea-play-release
+name: yuzu-android-ea-play-release
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
 jobs:
   android:
     runs-on: ubuntu-latest
-    if: ${{ github.repository == 'suyu-emu/suyu' }}
+    if: ${{ github.repository == 'yuzu-emu/yuzu' }}
     steps:
       - uses: actions/checkout@v3
         name: Checkout
@@ -62,5 +62,5 @@ jobs:
           name: ${{ env.EA_TAG_NAME }}
           draft: false
           prerelease: false
-          repository: suyu/suyu-android
+          repository: yuzu/yuzu-android
           token: ${{ secrets.ALT_GITHUB_TOKEN }}

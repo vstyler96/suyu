@@ -1,7 +1,7 @@
-# SPDX-FileCopyrightText: 2022 suyu Emulator Project
+# SPDX-FileCopyrightText: 2022 yuzu Emulator Project
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-name: 'suyu verify'
+name: 'yuzu verify'
 
 on:
   pull_request:
@@ -39,7 +39,7 @@ jobs:
           - type: windows
             image: linux-mingw
     container:
-      image: suyuemu/build-environments:${{ matrix.image }}
+      image: yuzuemu/build-environments:${{ matrix.image }}
       options: -u 1001
     steps:
       - uses: actions/checkout@v3
@@ -87,7 +87,7 @@ jobs:
           mkdir build
           cd build
           export Qt5_DIR="$(brew --prefix qt@5)/lib/cmake"
-          cmake .. -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo -Dsuyu_USE_BUNDLED_VCPKG=OFF -Dsuyu_TESTS=OFF -DENABLE_WEB_SERVICE=OFF -DENABLE_LIBUSB=OFF
+          cmake .. -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DYUZU_USE_BUNDLED_VCPKG=OFF -DYUZU_TESTS=OFF -DENABLE_WEB_SERVICE=OFF -DENABLE_LIBUSB=OFF
           ninja
   build-msvc:
     name: 'test build (windows, msvc)'
@@ -129,7 +129,7 @@ jobs:
         run: |
           glslangValidator --version
           mkdir build
-          cmake . -B build -GNinja -DCMAKE_TOOLCHAIN_FILE="CMakeModules/MSVCCache.cmake" -DUSE_CCACHE=ON -Dsuyu_USE_BUNDLED_QT=1 -Dsuyu_USE_BUNDLED_SDL2=1 -Dsuyu_USE_QT_WEB_ENGINE=ON -DENABLE_COMPATIBILITY_LIST_DOWNLOAD=ON -Dsuyu_ENABLE_COMPATIBILITY_REPORTING=ON -DUSE_DISCORD_PRESENCE=ON -DENABLE_QT_TRANSLATION=ON -DCMAKE_BUILD_TYPE=Release -DGIT_BRANCH=pr-verify -Dsuyu_CRASH_DUMPS=ON
+          cmake . -B build -GNinja -DCMAKE_TOOLCHAIN_FILE="CMakeModules/MSVCCache.cmake" -DUSE_CCACHE=ON -DYUZU_USE_BUNDLED_QT=1 -DYUZU_USE_BUNDLED_SDL2=1 -DYUZU_USE_QT_WEB_ENGINE=ON -DENABLE_COMPATIBILITY_LIST_DOWNLOAD=ON -DYUZU_ENABLE_COMPATIBILITY_REPORTING=ON -DUSE_DISCORD_PRESENCE=ON -DENABLE_QT_TRANSLATION=ON -DCMAKE_BUILD_TYPE=Release -DGIT_BRANCH=pr-verify -DYUZU_CRASH_DUMPS=ON
       - name: Build
         run: cmake --build build
       - name: Cache Summary
