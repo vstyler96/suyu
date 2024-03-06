@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 suyu Emulator Project
+// SPDX-FileCopyrightText: 2023 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 // Note: This is a GitHub Actions script
@@ -25,8 +25,8 @@ async function checkBaseChanges(github) {
         }
     }`;
     const variables = {
-        owner: 'suyu-emu',
-        name: 'suyu',
+        owner: 'yuzu-emu',
+        name: 'yuzu',
         ref: 'refs/heads/master',
     };
     const result = await github.graphql(query, variables);
@@ -126,7 +126,7 @@ async function tagAndPushEA(github, owner, repo, execa) {
     const newTag = `ea-${tagNumber + 1}`;
     console.log(`New tag: ${newTag}`);
     console.info('Pushing tags to GitHub ...');
-    await execa("git", ["remote", "add", "android", "https://github.com/suyu-emu/suyu-android.git"]);
+    await execa("git", ["remote", "add", "android", "https://github.com/yuzu-emu/yuzu-android.git"]);
     await execa("git", ["fetch", "android"]);
 
     await execa("git", ['tag', newTag]);
@@ -174,12 +174,12 @@ async function fetchPullRequests(pulls, repoUrl, execa) {
 async function mergePullRequests(pulls, execa) {
     let mergeResults = {};
     console.log("::group::Merge pull requests");
-    await execa("git", ["config", "--global", "user.name", "suyubot"]);
+    await execa("git", ["config", "--global", "user.name", "yuzubot"]);
     await execa("git", [
         "config",
         "--global",
         "user.email",
-        "suyu\x40suyu-emu\x2eorg", // prevent email harvesters from scraping the address
+        "yuzu\x40yuzu-emu\x2eorg", // prevent email harvesters from scraping the address
     ]);
     let hasFailed = false;
     for (let pull of pulls) {
@@ -195,7 +195,7 @@ async function mergePullRequests(pulls, execa) {
             process1.stdout.pipe(process.stdout);
             await process1;
 
-            const process2 = execa("git", ["commit", "-m", `Merge suyu-emu#${pr}`]);
+            const process2 = execa("git", ["commit", "-m", `Merge yuzu-emu#${pr}`]);
             process2.stdout.pipe(process.stdout);
             await process2;
 
@@ -224,7 +224,7 @@ async function resetBranch(execa) {
     console.log("::group::Reset master branch");
     let hasFailed = false;
     try {
-        await execa("git", ["remote", "add", "source", "https://github.com/suyu-emu/suyu.git"]);
+        await execa("git", ["remote", "add", "source", "https://github.com/yuzu-emu/yuzu.git"]);
         await execa("git", ["fetch", "source"]);
         const process1 = await execa("git", ["rev-parse", "source/master"]);
         const headCommit = process1.stdout;
@@ -251,16 +251,16 @@ async function getPulls(github) {
         }
     }`;
     const mainlineVariables = {
-        owner: 'suyu-emu',
-        name: 'suyu',
+        owner: 'yuzu-emu',
+        name: 'yuzu',
         label: CHANGE_LABEL_MAINLINE,
     };
     const mainlineResult = await github.graphql(query, mainlineVariables);
     const pulls = mainlineResult.repository.pullRequests.nodes;
     if (BUILD_EA) {
         const eaVariables = {
-            owner: 'suyu-emu',
-            name: 'suyu',
+            owner: 'yuzu-emu',
+            name: 'yuzu',
             label: CHANGE_LABEL_EA,
         };
         const eaResult = await github.graphql(query, eaVariables);
@@ -274,7 +274,7 @@ async function getMainlineTag(execa) {
     console.log(`::group::Getting mainline tag android-${MAINLINE_TAG}`);
     let hasFailed = false;
     try {
-        await execa("git", ["remote", "add", "mainline", "https://github.com/suyu-emu/suyu-android.git"]);
+        await execa("git", ["remote", "add", "mainline", "https://github.com/yuzu-emu/yuzu-android.git"]);
         await execa("git", ["fetch", "mainline", "--tags"]);
         await execa("git", ["checkout", `tags/android-${MAINLINE_TAG}`]);
         await execa("git", ["submodule", "update", "--init", "--recursive"]);
@@ -289,7 +289,7 @@ async function getMainlineTag(execa) {
 }
 
 async function mergebot(github, context, execa) {
-    // Reset our local copy of master to what appears on suyu-emu/suyu - master
+    // Reset our local copy of master to what appears on yuzu-emu/yuzu - master
     await resetBranch(execa);
 
     const pulls = await getPulls(github);
@@ -300,14 +300,14 @@ async function mergebot(github, context, execa) {
     }
     console.info("The following pull requests will be merged:");
     console.table(displayList);
-    await fetchPullRequests(pulls, "https://github.com/suyu-emu/suyu", execa);
+    await fetchPullRequests(pulls, "https://github.com/yuzu-emu/yuzu", execa);
     const mergeResults = await mergePullRequests(pulls, execa);
 
     if (BUILD_EA) {
-        await tagAndPushEA(github, 'suyu-emu', `suyu-android`, execa);
+        await tagAndPushEA(github, 'yuzu-emu', `yuzu-android`, execa);
     } else {
         await generateReadme(pulls, context, mergeResults, execa);
-        await tagAndPush(github, 'suyu-emu', `suyu-android`, execa, true);
+        await tagAndPush(github, 'yuzu-emu', `yuzu-android`, execa, true);
     }
 }
 
