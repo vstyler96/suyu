@@ -1,0 +1,43 @@
+name: Mirror Gitlab
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    
+    permissions: write-all
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Clone GitLab repo
+      run: git clone --branch dev https://gitlab.com/suyu-emu/suyu.git mirror
+
+    - name: Copy GitHub Action file to cloned repo
+      run: |
+        mkdir -p mirror/.github/workflows/
+        cp .github/workflows/mirror.yml mirror/.github/workflows/
+
+    - name: Commit and force push to GitHub
+      run: |
+        cd mirror
+        git remote set-url origin https://github.com/${{ github.repository }}.git
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add .
+        git commit -m "Add GitHub Action file"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.TOKEN }}
+        repository: ${{ github.repository }}
+        branch: ${{ github.ref }}
+        github_url: https://github.com
+        directory: ./mirror
+        force: true
